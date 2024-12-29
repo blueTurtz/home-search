@@ -12,6 +12,8 @@ class BaseScraper:
            self.structured[f"Page {index}"] = row
 
         path = Path("semi-structured-data")
+        if not path.exists():
+            path.mkdir()
         path = path / f"{self.file_name.stem}.json"
         with path.open("w") as semi_structured:
             json.dump(self.structured, semi_structured)
